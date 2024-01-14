@@ -10,6 +10,6 @@ Before running the application, make sure you have the following installed on yo
 
 ## How to Install
 ```bash
-   pip install Flask
-   pip install Flask-SQLAlchemy
+pip install Flask
+pip install Flask-SQLAlchemy
 ```
