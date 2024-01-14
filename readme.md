@@ -7,3 +7,9 @@ Before running the application, make sure you have the following installed on yo
 # Using Tech
 - Flask
 - Flask-SQLAlchemy
+
+## How to Install
+```bash
+   pip install Flask
+   pip install Flask-SQLAlchemy
+```
