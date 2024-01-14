@@ -24,5 +24,17 @@ def register():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route("/book")
+def book():
+    return render_template('view/book/index.html')
+
+@app.route("/book/create")
+def book_create():
+    return render_template('view/book/create.html')
+
+@app.route("/book/edit/<id>")
+def book_edit():
+    return render_template('view/book/edit.html', id=id)
+
 if __name__ == "__main__":
     app.run(debug=True)
