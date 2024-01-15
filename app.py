@@ -23,8 +23,8 @@ def testdb():
     try:
         db_instance.session.execute(text("SELECT 1")).all()
         return '<h1>It works.</h1>'
-    except:
-        return '<h1>Something is broken.</h1>'
+    except Exception as error:
+        return '<h1>Something is broken.</h1> <br> Error : ' + str(error)
 
 @app.route("/")
 def index():
