@@ -13,3 +13,12 @@ Before running the application, make sure you have the following installed on yo
 pip install Flask
 pip install Flask-SQLAlchemy
 ```
+or
+```bash
+pip install -r requirements.txt
+```
+
+## How to Run
+```bash
+python app.py
+```
