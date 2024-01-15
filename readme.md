@@ -1,4 +1,4 @@
-# Flask Book App
+# Flask Book App (Unfinished)
 
 # Prerequisites
 Before running the application, make sure you have the following installed on your machine:
