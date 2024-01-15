@@ -13,7 +13,20 @@ def register():
     if request.method == 'POST':
         if all(request.form.get(key) is not None and request.form.get(key) != '' for key in ['name', 'email', 'password', 'password_confirmation']):
             if request.form.get('password') == request.form.get('password_confirmation'):
-                return "Lanjut"
+                # return "HOLA"
+                return redirect(url_for('authPage.login'))
+                # try:
+                #     name = request.form.get('name')
+                #     email = request.form.get('email')
+                #     password = request.form.get('password')
+                    
+                #     user = Users(name, email, password)
+                #     db.session.add(user)
+                    
+                #     return redirect(url_for('authPage.login'))
+                # except Exception as error:
+                #     flash("Error : " + str(error))
+                #     return redirect(url_for('authPage.register'))
             else:
                 flash("Password and password confirmation must be same")
                 return redirect(url_for('authPage.register'))

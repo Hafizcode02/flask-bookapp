@@ -11,31 +11,45 @@
                     <div class="card-body p-4">
                         <h1>Register</h1>
                         <p class="text-medium-emphasis">Create your BookApps account</p>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
-                            <input class="form-control" type="text" placeholder="Username">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="fw-semibold">Failed</div> {{ message }}
+                            <button class="btn-close" type="button" data-coreui-dismiss="alert"
+                                aria-label="Close"></button>
                         </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class="fa-solid fa-envelope"></i>
-                            </span>
-                            <input class="form-control" type="text" placeholder="Email">
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">
-                                <i class="fa-solid fa-lock"></i>
-                            </span>
-                            <input class="form-control" type="password" placeholder="Password">
-                        </div>
-                        <div class="input-group mb-4">
-                            <span class="input-group-text">
-                                <i class="fa-solid fa-lock"></i>
-                            </span>
-                            <input class="form-control" type="password" placeholder="Repeat password">
-                        </div>
-                        <button class="btn btn-block btn-success" type="button">Create Account</button>
+                        {% endfor %}
+                        {% endif%}
+                        {% endwith %}
+                        <form action="{{ url_for('authPage.register') }}" method="POST">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <input class="form-control" name="name" type="text" placeholder="Your Name" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </span>
+                                <input class="form-control" name="email" type="email" placeholder="Email" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+                                <input class="form-control" name="password" type="password" placeholder="Password" required>
+                            </div>
+                            <div class="input-group mb-4">
+                                <span class="input-group-text">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+                                <input class="form-control" name="password_confirmation" type="password"
+                                    placeholder="Repeat password" required>
+                            </div>
+                            <button class="btn btn-block btn-success" type="submit">Create Account</button>
+                        </form>
                     </div>
                 </div>
             </div>
