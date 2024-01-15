@@ -2,3 +2,7 @@ src/__pycache__
 src/auth/__pycache__
 src/book/__pycache__
 src/dashboard/__pycache__
+src/model/__pycache__
+.env
+venv
+__pycache__
