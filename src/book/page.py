@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, session
+from flask import Blueprint, render_template, redirect, url_for, session, request, flash
 from jinja2 import TemplateNotFound
 from database import db_instance
 from src.models.books import Books
@@ -22,7 +22,25 @@ def book_create():
 
 @bookPage.route("/book/store", methods=['POST'])
 def book_store():
-    return "OKE"
+    if all(request.form.get(key) is not None and request.form.get(key) != '' for key in ['judul', 'penulis', 'penerbit', 'tahun_terbit']):
+        try:
+            judul = request.form.get('judul')
+            penulis = request.form.get('penulis')
+            penerbit = request.form.get('penerbit')
+            tahun_terbit = request.form.get('tahun_terbit')
+            
+            book = Books(judul, penulis, penerbit, tahun_terbit)
+            db_instance.session.add(book)
+            db_instance.session.commit()
+            
+            flash("Book has been created")
+            return redirect(url_for('bookPage.book'))
+        except Exception as error:
+            flash("Error : " + str(error))
+            return redirect(url_for('bookPage.book_create'))
+    else:
+        flash("All form must be filled")
+        return redirect(url_for('bookPage.book_create'))
 
 @bookPage.route("/book/edit/<id>")
 def book_edit(id):

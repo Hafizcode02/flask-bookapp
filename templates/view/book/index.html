@@ -4,9 +4,33 @@
 
 {% block body %}
 <div class="body flex-grow-1">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container-lg">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="fw-semibold">Success</div> {{ message }}
+            <button class="btn-close" type="button" data-coreui-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif%}
+    {% endwith %}
     <div class="container-lg">
         <div class="card mb-4">
-            <div class="card-header">Data Buku</div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-8 mt-2">
+                        <p style="font-size: 16pt; font-weight: 600;">Data Buku</p>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="btn btn-sm btn-primary" href="{{ url_for('bookPage.book_create') }}">Tambah
+                                Buku</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="col-md-12">
                     <div class="row">
@@ -32,8 +56,10 @@
                                         <td>{{ book.penulis }}</td>
                                         <td>{{ book.penerbit }}</td>
                                         <td>{{ book.tahun_terbit }}</td>
-                                        <td><a class="btn btn-sm btn-primary" href="{{ url_for('bookPage.book_edit', id=book.id) }}">Edit</a>
-                                            <a class="btn btn-sm btn-danger" href="{{ url_for('bookPage.book_delete', id=book.id) }}">Hapus</a>
+                                        <td><a class="btn btn-sm btn-primary"
+                                                href="{{ url_for('bookPage.book_edit', id=book.id) }}">Edit</a>
+                                            <a class="btn btn-sm btn-danger"
+                                                href="{{ url_for('bookPage.book_delete', id=book.id) }}">Hapus</a>
                                         </td>
                                     </tr>
                                     {% endfor %}
