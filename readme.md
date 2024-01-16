@@ -7,13 +7,10 @@ Before running the application, make sure you have the following installed on yo
 # Using Tech
 - Flask
 - Flask-SQLAlchemy
+- Jinja2
+
 
 ## How to Install
-```bash
-pip install Flask
-pip install Flask-SQLAlchemy
-```
-or
 ```bash
 pip install -r requirements.txt
 ```
