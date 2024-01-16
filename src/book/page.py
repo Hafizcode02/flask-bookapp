@@ -44,11 +44,29 @@ def book_store():
 
 @bookPage.route("/book/edit/<id>")
 def book_edit(id):
-    return render_template('view/book/edit.html', id=id)
+    book  = Books.query.get(id)
+    return render_template('view/book/edit.html', book=book)
 
 @bookPage.route("/book/update/<id>", methods=['POST'])
 def book_update(id):
-    return "OKE"
+    if all(request.form.get(key) is not None and request.form.get(key) != '' for key in ['judul', 'penulis', 'penerbit', 'tahun_terbit']):
+        try:
+            book  = Books.query.get(id)
+            book.judul = request.form.get('judul')
+            book.penulis = request.form.get('penulis')
+            book.penerbit = request.form.get('penerbit')
+            book.tahun_terbit = request.form.get('tahun_terbit')
+            
+            db_instance.session.commit()
+            
+            flash("Book has been updated")
+            return redirect(url_for('bookPage.book'))
+        except Exception as error:
+            flash("Error : " + str(error))
+            return redirect(url_for('bookPage.book'))
+    else:
+        flash("All form must be filled")
+        return redirect(url_for('bookPage.book_update', id=id))
 
 @bookPage.route("/book/delete/<id>")
 def book_delete(id):

@@ -3,9 +3,56 @@
 {% block title %} Edit Book - BookApps {% endblock %}
 
 {% block body %}
-<div class="body flex-grow-1 px-3">
+<div class="body flex-grow-1 px-5">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
     <div class="container-lg">
-        <h1>Edit Book</h1>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="fw-semibold">Failed</div> {{ message }}
+            <button class="btn-close" type="button" data-coreui-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <strong>Edit Buku</strong>
+                    </div>
+                    <form action="{{ url_for('bookPage.book_update', id=book.id) }}" method="POST">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="judul">Judul</label>
+                                <input class="form-control" name="judul" type="text" placeholder="Judul Buku" value="{{book.judul}}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="penulis">Penulis</label>
+                                <input class="form-control" name="penulis" type="text" placeholder="Penulis Buku" value="{{book.penulis}}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="penerbit">Penerbit</label>
+                                <input class="form-control" name="penerbit" type="text" placeholder="Penerbit Buku" value="{{book.penerbit}}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="tahun_terbit">Tahun Terbit</label>
+                                <input class="form-control" name="tahun_terbit" type="text"
+                                    placeholder="Tahun Terbit Buku" value="{{book.tahun_terbit}}">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a class="btn btn-primary" href="{{ url_for('bookPage.book') }}">Kembali</a>
+                                <button class="btn btn-success" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
