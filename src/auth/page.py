@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, abort, request, redirect, url_for, session, flash, current_app
 from jinja2 import TemplateNotFound
+from database import db_instance as db
+from src.models.users import Users
 
 authPage = Blueprint('authPage', __name__,
                         template_folder='templates')
@@ -14,19 +16,20 @@ def register():
         if all(request.form.get(key) is not None and request.form.get(key) != '' for key in ['name', 'email', 'password', 'password_confirmation']):
             if request.form.get('password') == request.form.get('password_confirmation'):
                 # return "HOLA"
-                return redirect(url_for('authPage.login'))
-                # try:
-                #     name = request.form.get('name')
-                #     email = request.form.get('email')
-                #     password = request.form.get('password')
+                # return redirect(url_for('authPage.login'))
+                try:
+                    name = request.form.get('name')
+                    email = request.form.get('email')
+                    password = request.form.get('password')
                     
-                #     user = Users(name, email, password)
-                #     db.session.add(user)
+                    user = Users(name, email, password)
+                    db.session.add(user)
+                    db.session.commit()
                     
-                #     return redirect(url_for('authPage.login'))
-                # except Exception as error:
-                #     flash("Error : " + str(error))
-                #     return redirect(url_for('authPage.register'))
+                    return redirect(url_for('authPage.login'))
+                except Exception as error:
+                    flash("Error : " + str(error))
+                    return redirect(url_for('authPage.register'))
             else:
                 flash("Password and password confirmation must be same")
                 return redirect(url_for('authPage.register'))
