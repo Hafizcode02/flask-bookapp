@@ -1,8 +1,14 @@
-from app import db_instance as db
+from database import db_instance as db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Users(db.Model):
-    id = db.cloumn(db.Integer, primary_key=True, autoIncrement=True)
-    name = db.column(db.string(255), nullable=False)
-    email = db.column(db.string(255), nullable=False)
-    password = db.column(db.string(255), nullable=False)
-    is_active = db.column(db.Boolean, default=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
+    
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = generate_password_hash(password)
