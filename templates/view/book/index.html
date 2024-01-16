@@ -8,34 +8,39 @@
         <div class="card mb-4">
             <div class="card-header">Data Buku</div>
             <div class="card-body">
-                <div class="row">
-                    <table id="example" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Sampul</th>
-                                <th>Judul</th>
-                                <th>Penulis</th>
-                                <th>Penerbit</th>
-                                <th>Tahun Terbit</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><button class="btn btn-sm btn-primary" type="button">Edit</button>
-                                    <button class="btn btn-sm btn-danger" type="button">Hapus</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Sampul</th>
+                                        <th>Judul</th>
+                                        <th>Penulis</th>
+                                        <th>Penerbit</th>
+                                        <th>Tahun Terbit</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in books %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td> - </td>
+                                        <td>{{ book.judul }}</td>
+                                        <td>{{ book.penulis }}</td>
+                                        <td>{{ book.penerbit }}</td>
+                                        <td>{{ book.tahun_terbit }}</td>
+                                        <td><a class="btn btn-sm btn-primary" href="{{ url_for('bookPage.book_edit', id=book.id) }}">Edit</a>
+                                            <a class="btn btn-sm btn-danger" href="{{ url_for('bookPage.book_delete', id=book.id) }}">Hapus</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
