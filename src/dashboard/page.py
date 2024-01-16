@@ -7,6 +7,6 @@ dashboardPage = Blueprint('dashboardPage', __name__,
 @dashboardPage.route("/dashboard")
 def dashboard():
     if 'loggedIn' in session and session['loggedIn'][0] == True:
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', name=session['userName'][0])
     else:
         return redirect(url_for('authPage.login'))

@@ -2,17 +2,25 @@
 
 {# Comment
 {% block navbar_top %}
-    {% include 'layout/admin/navbar-top.html' %}
+{% include 'layout/admin/navbar-top.html' %}
 
-    {% block page_name %} Dashboard {% endblock %}
+{% block page_name %} Dashboard {% endblock %}
 {% endblock %}
 #}
 
 {% block title %} Dashboard - BookApps {% endblock %}
 
 {% block body %}
-<div class="body flex-grow-1 px-3">
+<div class="body flex-grow-1">
     <div class="container-lg">
+        <div class="card mb-4">
+            <div class="card-header">Dashboard</div>
+            <div class="card-body">
+                <div class="row">
+                    <p>Selamat Datang, {{ name }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
