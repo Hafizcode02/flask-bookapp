@@ -12,23 +12,36 @@
                         <div class="card-body">
                             <h1>Login</h1>
                             <p class="text-medium-emphasis">Sign In to your BookApps Account</p>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                <input class="form-control" type="text" placeholder="Username">
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <div class="fw-semibold">Failed</div> {{ message }}
+                                <button class="btn-close" type="button" data-coreui-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
-                            <div class="input-group mb-4">
-                                <span class="input-group-text">
-                                    <i class="fa-solid fa-lock"></i>
-                                </span>
-                                <input class="form-control" type="password" placeholder="Password">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button class="btn btn-primary px-4" type="button">Login</button>
+                            {% endfor %}
+                            {% endif%}
+                            {% endwith %}
+                            <form action="{{ url_for('authPage.login') }}" method="POST">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </span>
+                                    <input class="form-control" name="email" type="email" placeholder="Email">
                                 </div>
-                            </div>
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </span>
+                                    <input class="form-control" name="password" type="password" placeholder="Password">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-primary px-4" type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="card col-md-5 text-white bg-primary py-5">
@@ -37,7 +50,8 @@
                                 <h2>Sign up</h2>
                                 <p>Have a lot of books, but getting tired to list it in your paper book?, with
                                     BookApps you can list your book without worry about paper that you used.</p>
-                                <a href="{{ url_for('authPage.register') }}" class="btn btn-lg btn-outline-light mt-3" type="button">Register
+                                <a href="{{ url_for('authPage.register') }}" class="btn btn-lg btn-outline-light mt-3"
+                                    type="button">Register
                                     Now!</a>
                             </div>
                         </div>

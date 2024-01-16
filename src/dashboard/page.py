@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, session, redirect, url_for
 from jinja2 import TemplateNotFound
 
 dashboardPage = Blueprint('dashboardPage', __name__,
@@ -6,4 +6,7 @@ dashboardPage = Blueprint('dashboardPage', __name__,
 
 @dashboardPage.route("/dashboard")
 def dashboard():
-    return render_template('dashboard.html')
+    if 'loggedIn' in session and session['loggedIn'][0] == True:
+        return render_template('dashboard.html')
+    else:
+        return redirect(url_for('authPage.login'))
