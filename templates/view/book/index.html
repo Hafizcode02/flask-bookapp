@@ -58,8 +58,12 @@
                                         <td>{{ book.tahun_terbit }}</td>
                                         <td><a class="btn btn-sm btn-primary"
                                                 href="{{ url_for('bookPage.book_edit', id=book.id) }}">Edit</a>
-                                            <a class="btn btn-sm btn-danger"
-                                                href="{{ url_for('bookPage.book_delete', id=book.id) }}">Hapus</a>
+                                            <!-- <a class="btn btn-sm btn-danger"
+                                                href="{{ url_for('bookPage.book_delete', id=book.id) }}">Hapus</a> -->
+                                            <button type="button" data-link="{{ url_for('bookPage.book_delete', id=book.id) }}" class="btn btn-sm btn-danger delete-button"
+                                                data-coreui-toggle="modal" data-coreui-target="#staticBackdrop">
+                                                Hapus
+                                            </button>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -70,7 +74,41 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-coreui-toggle="modal" data-coreui-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-coreui-backdrop="static" data-coreui-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Hapus Buku</h5>
+                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Anda yakin ingin menghapus buku ini ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-coreui-dismiss="modal">Tutup</button>
+                <a class="btn btn-primary confirm-delete" href="">Hapus</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('.delete-button').on('click', function (e) {
+        var link = $(this).attr('data-link');
+        $('.confirm-delete').attr('href', link);
+
+    });
+</script>
 {% endblock %}
