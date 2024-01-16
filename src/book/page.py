@@ -70,4 +70,9 @@ def book_update(id):
 
 @bookPage.route("/book/delete/<id>")
 def book_delete(id):
-    return "OKE"
+    book = Books.query.get(id)
+    db_instance.session.delete(book)
+    db_instance.session.commit()
+    
+    flash('Book has been deleted')
+    return redirect(url_for('bookPage.book'))
