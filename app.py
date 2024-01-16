@@ -6,13 +6,16 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config as config
 from sqlalchemy.sql import text
 
+from database import db_instance
+
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = config.SQLALCHEMY_DATABASE_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = config.SQLALCHEMY_TRACK_MODIFICATIONS
 app.config["SECRET_KEY"] = config.SECRET_KEY
 
-db_instance = SQLAlchemy(app)
+# db_instance = SQLAlchemy(app)
+db_instance.init_app(app)
 
 app.register_blueprint(authPage)
 app.register_blueprint(dashboardPage)
