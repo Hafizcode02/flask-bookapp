@@ -19,3 +19,25 @@ pip install -r requirements.txt
 ```bash
 python app.py
 ```
+## Preview
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/login.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/register.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/dashboard.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/show.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/create.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/edit.png">
+</p>
+<p align="justify">
+  <img src="https://github.com/Hafizcode02/flask-bookapp/blob/main/readme_img/delete.png">
+</p>
